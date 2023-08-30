@@ -1,0 +1,36 @@
+* {
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+h2 {
+  margin: 0;
+  font-size: 8rem;
+  text-align: center;
+}
+
+div {
+  gap: 0.45rem;
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+}
+
+body {
+  gap: 0.45rem;
+  display: flex;
+  flex-direction: column;
+}
+
+input, button {
+  width: 100%;
+  padding: 0.45rem;
+}
+
+button.remove {
+  width: auto;
+}
