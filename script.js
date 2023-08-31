@@ -66,6 +66,9 @@ function startWorkout(index) {
   let round = 0
   let exercise = 2
 
+  const next = document.createElement("h3")
+  next.innerText = "Next: " + list[index][exercise + 1]
+
   const header = document.createElement("h1")
   header.innerText = "Prepare"
 
@@ -75,7 +78,7 @@ function startWorkout(index) {
   const counter = document.createElement("h2")
   counter.innerText = String(clock)
 
-  document.body.replaceChildren(header, counter, footer)
+  document.body.replaceChildren(header, counter, footer, next)
 
   const interval = setInterval(() => {
     counter.innerText = String(--clock)
@@ -90,15 +93,21 @@ function startWorkout(index) {
         clock = list[index][1]
         header.innerText = "Rest"
 
-        if (exercise + 1 == list[index].length && round + 1 == list[index][2]) {
-          clearInterval(interval)
+        if (exercise + 1 == list[index].length) {
+          next.innerText = "Next: " + list[index][3]
+          if (round + 1 == list[index][2]) {
+            clearInterval(interval)
 
-          footer.innerText = ""
-          counter.innerText = ""
+            next.innerText = ""
+            footer.innerText = ""
+            counter.innerText = ""
 
-          header.innerText = "Done!"
-          setTimeout(drawHome, 2000)
-          return
+            header.innerText = "Done!"
+            setTimeout(drawHome, 2000)
+            return
+          }
+        } else {
+          next.innerText = "Next: " + list[index][exercise + 1]
         }
       } else {
         clock = list[index][0]
@@ -108,6 +117,8 @@ function startWorkout(index) {
           exercise = 3
           footer.innerText = "Round " + (round + 1)
         }
+
+        next.innerText = ""
         header.innerText = list[index][exercise]
       }
       counter.innerText = String(clock)
