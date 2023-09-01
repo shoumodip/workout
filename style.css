@@ -2,6 +2,10 @@
   font-size: 2rem;
 }
 
+hr {
+  width: 100%;
+}
+
 h1 {
   font-size: 4rem;
   text-align: center;

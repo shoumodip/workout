@@ -42,7 +42,8 @@ function drawWorkout(index) {
     top,
     createNumber(index, 0, "Work:", 10),
     createNumber(index, 1, "Rest:", 5),
-    createNumber(index, 2, "Round:", 2))
+    createNumber(index, 2, "Round:", 2),
+    document.createElement("hr"))
 
   for (let i = 3; i < list[index].length; i++) {
     createExercise(index, i)
