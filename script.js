@@ -6,43 +6,37 @@ function saveList() {
 }
 
 function drawHome() {
+  document.body.replaceChildren()
+  for (let i = 0; i < list.length; i++) {
+    createWorkout(i)
+  }
+
   const create = document.createElement("button")
-  create.innerText = "+"
+  create.innerText = "Create New Workout"
   create.onclick = () => {
     createWorkout(list.length)
     list.push([40, 20, 3])
     saveList()
+    drawHome()
   }
 
-  document.body.replaceChildren(create)
-  for (let i = 0; i < list.length; i++) {
-    createWorkout(i)
-  }
+  document.body.appendChild(create)
 }
 
 function drawWorkout(index) {
   const top = document.createElement("div")
 
   const back = document.createElement("button")
-  back.innerText = "←"
+  back.innerText = "Back"
   back.onclick = () => drawHome()
   top.appendChild(back)
 
   const start = document.createElement("button")
-  start.innerText = "▶"
+  start.innerText = "Start"
   start.onclick = () => {
     startWorkout(index)
   }
   top.appendChild(start)
-
-  const create = document.createElement("button")
-  create.innerText = "+"
-  create.onclick = () => {
-    list[index].push("Exercise " + (list[index].length - 2))
-    createExercise(index, list[index].length - 1)
-    saveList()
-  }
-  top.appendChild(create)
 
   document.body.replaceChildren(
     top,
@@ -53,6 +47,16 @@ function drawWorkout(index) {
   for (let i = 3; i < list[index].length; i++) {
     createExercise(index, i)
   }
+
+  const create = document.createElement("button")
+  create.innerText = "Add Exercise"
+  create.onclick = () => {
+    list[index].push("Exercise " + (list[index].length - 2))
+    createExercise(index, list[index].length - 1)
+    saveList()
+    drawWorkout(index)
+  }
+  document.body.appendChild(create)
 }
 
 function startWorkout(index) {
